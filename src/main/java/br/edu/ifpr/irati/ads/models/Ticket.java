@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity(name = "ticket")
-public class Ticket {
+public class Ticket implements Comparable<Ticket> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-ticket")
@@ -47,7 +47,6 @@ public class Ticket {
         theme = new Theme();
         endDateWithDays = 0;
         status = StatusTicketEnum.ABERTO;
-
     }
 
     public Ticket(int id, String title, String description, User createdBy, Theme theme, int endDateWithDays, StatusTicketEnum status) {
@@ -131,5 +130,10 @@ public class Ticket {
 
     public void setMessages(List<Message> messages) {
         this.messages = messages;
+    }
+
+    @Override
+    public int compareTo(Ticket o) {
+        return this.id - o.id;
     }
 }

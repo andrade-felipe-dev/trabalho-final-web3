@@ -16,12 +16,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@WebFilter(urlPatterns = {"/login"})
+@WebFilter(urlPatterns = {"/"})
 public class AuthFilter implements Filter {
 
 	private Cookie getUser(HttpServletRequest httpReq) {
 		Cookie[] cookies = httpReq.getCookies();
 		Cookie name = null;
+
 		if (cookies != null) {
 			for (Cookie c: cookies) {
 				if (c.getName().equals("name")) {
@@ -30,6 +31,7 @@ public class AuthFilter implements Filter {
 				}
 			}
 		}
+
 		return name;
 	}
 
@@ -39,17 +41,16 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		System.out.println("Teste");
 		Cookie userCookie = getUser((HttpServletRequest) request);
 		boolean valido = validarToken(userCookie);
-
-		System.out.println("Teste");
 
 		if (valido) {
 			chain.doFilter(request, response);
 		} else {
 			HttpServletResponse httpResp = (HttpServletResponse) response;
 			httpResp.sendRedirect("/login.jsp");
-			httpResp.getWriter().println("Token inválido. Por favor, faça o login."); // Mensagem de erro
+			httpResp.getWriter().println("Token inválido. Por favor, faça o login.");
 		}
 	}
 }

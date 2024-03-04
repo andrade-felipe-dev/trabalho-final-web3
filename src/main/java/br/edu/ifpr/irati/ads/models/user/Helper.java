@@ -2,6 +2,7 @@ package br.edu.ifpr.irati.ads.models.user;
 
 import br.edu.ifpr.irati.ads.models.Ticket;
 import br.edu.ifpr.irati.ads.models.enums.StatusTicketEnum;
+import br.edu.ifpr.irati.ads.models.enums.TypeUserEnum;
 import br.edu.ifpr.irati.ads.models.exception.InvalidStatusException;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

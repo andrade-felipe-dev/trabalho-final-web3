@@ -1,6 +1,7 @@
 package br.edu.ifpr.irati.ads.models.user;
 
 
+import br.edu.ifpr.irati.ads.models.enums.TypeUserEnum;
 import jakarta.persistence.*;
 
 @Entity(name = "user")
@@ -9,7 +10,6 @@ import jakarta.persistence.*;
 public class User {
 
     public User() {
-        id = 0;
         name = "";
         email = "";
     }

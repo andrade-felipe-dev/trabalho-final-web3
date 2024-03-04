@@ -1,6 +1,7 @@
 package br.edu.ifpr.irati.ads.models.user;
 
 import br.edu.ifpr.irati.ads.models.Ticket;
+import br.edu.ifpr.irati.ads.models.enums.TypeUserEnum;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
