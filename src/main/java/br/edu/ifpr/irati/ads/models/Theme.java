@@ -5,7 +5,7 @@ import br.edu.ifpr.irati.ads.models.user.Admin;
 import jakarta.persistence.*;
 
 @Entity(name = "theme")
-public class Theme {
+public class Theme implements Comparable<Theme> {
     public Theme() {
         id = 0;
         name = NameThemeEnum.OUTROS;
@@ -26,6 +26,14 @@ public class Theme {
     @Enumerated(EnumType.STRING)
     private NameThemeEnum name;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int endDateWithDays;
 
     public NameThemeEnum getName() {
@@ -42,5 +50,10 @@ public class Theme {
 
     public void setEndDateWithDays(int endDateWithDays) {
         this.endDateWithDays = endDateWithDays;
+    }
+
+    @Override
+    public int compareTo(Theme o) {
+        return this.id - o.id;
     }
 }

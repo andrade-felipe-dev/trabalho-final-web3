@@ -7,6 +7,7 @@ import br.edu.ifpr.irati.ads.models.user.Helper;
 import br.edu.ifpr.irati.ads.models.user.User;
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "ticket")
@@ -22,16 +23,17 @@ public class Ticket implements Comparable<Ticket> {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(optional = true, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Helper responsible;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Theme theme;
-    @Column(name = "endDateWithDays")
-    private int endDateWithDays;
+    @Column(name = "endDate")
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
 
     @Enumerated(EnumType.STRING)
     private StatusTicketEnum status;
@@ -45,17 +47,17 @@ public class Ticket implements Comparable<Ticket> {
         description = "";
         createdBy = new User();
         theme = new Theme();
-        endDateWithDays = 0;
+        endDate = new Date();
         status = StatusTicketEnum.ABERTO;
     }
 
-    public Ticket(int id, String title, String description, User createdBy, Theme theme, int endDateWithDays, StatusTicketEnum status) {
+    public Ticket(int id, String title, String description, User createdBy, Theme theme, Date endDate, StatusTicketEnum status) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.createdBy = createdBy;
         this.theme = theme;
-        this.endDateWithDays = endDateWithDays;
+        this.endDate = endDate;
         this.status = status;
     }
 
@@ -108,12 +110,12 @@ public class Ticket implements Comparable<Ticket> {
     }
 
 
-    public int getEndDateWithDays() {
-        return endDateWithDays;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEndDateWithDays(int endDateWithDays) {
-        this.endDateWithDays = endDateWithDays;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public StatusTicketEnum getStatus() {

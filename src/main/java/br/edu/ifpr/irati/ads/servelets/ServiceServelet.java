@@ -1,6 +1,11 @@
 package br.edu.ifpr.irati.ads.servelets;
 
-import br.edu.ifpr.irati.ads.services.ServiceFactory;
+import br.edu.ifpr.irati.ads.controls.ThemeController;
+import br.edu.ifpr.irati.ads.controls.TicketController;
+import br.edu.ifpr.irati.ads.dao.exception.PersistenceException;
+import br.edu.ifpr.irati.ads.models.Theme;
+import br.edu.ifpr.irati.ads.models.Ticket;
+import br.edu.ifpr.irati.ads.models.enums.StatusTicketEnum;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +13,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 @WebServlet(name = "serviceservelet", urlPatterns = {
         "/tickets/listar",
@@ -23,7 +30,7 @@ public class ServiceServelet extends HttpServlet {
 
     if (path.split("/").length == 3) {
       String entity = path.split("/")[1];
-      Service service = ServiceFactory.getService(entity);
+      Service service = Service.ServiceFactory.getService(entity);
       String method = path.split("/")[2];
       switch (method) {
         case "listar":
@@ -44,4 +51,6 @@ public class ServiceServelet extends HttpServlet {
       }
     }
   }
+
+
 }

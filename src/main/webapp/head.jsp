@@ -2,9 +2,9 @@
 
 <c:url	value="/css/materialize.min.css" var="materialcss"/>
 <c:url  value="/js/materialize.js" var = "materialjs"/>
+<c:url  value="/js/functions.js" var = "functionsjs"/>
 <c:url  value="https://code.jquery.com/jquery-1.9.1.js" var = "jquery"/>
 <c:url	value="/css/estilo.css" var="customcss"/>
-<c:url	value="/js/functions.js" var="customjs"/>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--Import Google Icon Font-->
@@ -18,3 +18,4 @@
 <script src="${jquery}"></script>
 <script src="${materialjs}"></script>
 <script src="${customjs}"></script>
+<script src="${functionsjs}"></script>

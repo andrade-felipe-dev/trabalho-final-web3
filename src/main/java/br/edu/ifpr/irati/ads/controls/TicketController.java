@@ -20,6 +20,11 @@ public class TicketController {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
+    public void save(Ticket ticket) throws PersistenceException {
+        InterfaceDAO<Ticket> ticketDAO = new GenericDAO<>(Ticket.class, session);
+        ticketDAO.save(ticket);
+    }
+
     public Ticket findById(int id) throws PersistenceException {
         InterfaceDAO<Ticket> ticketDAO = new GenericDAO<>(Ticket.class, session);
         return ticketDAO.findById(id);
@@ -28,11 +33,6 @@ public class TicketController {
     public List<Ticket> listTickets() throws PersistenceException {
         InterfaceDAO<Ticket> ticketDAO = new GenericDAO<>(Ticket.class, session);
         return ticketDAO.findAll();
-    }
-
-    public void createTicket(Ticket ticket) throws PersistenceException {
-        InterfaceDAO<Ticket> ticketDAO = new GenericDAO<>(Ticket.class, session);
-        ticketDAO.save(ticket);
     }
 
     public void updateTicket(Ticket ticket) throws PersistenceException {

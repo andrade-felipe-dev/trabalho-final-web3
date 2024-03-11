@@ -12,15 +12,12 @@ public class UserDAO {
         this.session = session;
     }
 
-    public boolean existsEmail(String email) {
+    public User findEmail(String email) {
         String hql = "FROM user u WHERE u.email = :email";
         Query<User> query = this.session.createQuery(hql, User.class);
 
         query.setParameter("email", email);
-        var result = query.getFirstResult();
 
-        System.out.println(result);
-
-        return true;
+        return query.getSingleResult();
     }
 }

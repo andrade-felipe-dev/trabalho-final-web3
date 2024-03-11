@@ -20,6 +20,12 @@ public class User {
         this.email = email;
     }
 
+    public String getTypeUser(User user) {
+        Class<? extends User> userClass = user.getClass();
+
+        return userClass.getSimpleName().toUpperCase();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-user")
     @SequenceGenerator(name = "seq-user", sequenceName = "USER_SEQ", allocationSize = 1, initialValue = 1)

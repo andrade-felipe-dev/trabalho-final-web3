@@ -7,6 +7,8 @@ import br.edu.ifpr.irati.ads.models.Theme;
 import br.edu.ifpr.irati.ads.utils.HibernateUtil;
 import org.hibernate.Session;
 
+import java.util.List;
+
 public class ThemeController {
   private Session session;
 
@@ -17,5 +19,15 @@ public class ThemeController {
   public Theme findById(int id) throws PersistenceException {
     InterfaceDAO<Theme> themeDAO = new GenericDAO<>(Theme.class, session);
     return themeDAO.findById(id);
+  }
+
+  public List<Theme> findAll() throws PersistenceException {
+    InterfaceDAO<Theme> themeDAO = new GenericDAO<>(Theme.class, session);
+    return themeDAO.findAll();
+  }
+
+  public void save(Theme theme) throws PersistenceException {
+    InterfaceDAO<Theme> themeDAO = new GenericDAO<>(Theme.class, session);
+    themeDAO.save(theme);
   }
 }

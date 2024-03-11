@@ -26,11 +26,10 @@ public class UserController {
         }
     }
 
-    public boolean existsUserEmail(String email) {
+    public User findEmail(String email) {
         UserDAO userDAO = new UserDAO(this.session);
-        userDAO.existsEmail(email);
 
-        return true;
+        return userDAO.findEmail(email);
     }
 
     public void saveDefaultUser(String name, String email) {

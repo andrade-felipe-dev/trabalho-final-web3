@@ -7,9 +7,13 @@ import br.edu.ifpr.irati.ads.models.Theme;
 import br.edu.ifpr.irati.ads.models.Ticket;
 import br.edu.ifpr.irati.ads.models.enums.StatusTicketEnum;
 import br.edu.ifpr.irati.ads.models.user.Default;
+import br.edu.ifpr.irati.ads.utils.CalendarUtil;
 import br.edu.ifpr.irati.ads.utils.HibernateUtil;
 import org.hibernate.Session;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TicketSeeder {
@@ -31,7 +35,10 @@ public class TicketSeeder {
 
             Default userDefault1 = defaultDAO.findById(3);
             Theme theme1 = themeDAO.findById(3);
-            Ticket ticket1 = new Ticket(0, "Novo problema", "Preciso que instale um software em minha máquina", userDefault1, theme1, theme.getEndDateWithDays(), StatusTicketEnum.ABERTO);
+            CalendarUtil calendarUtil = new CalendarUtil();
+            Date freshDate = calendarUtil.addDays(new Date(), theme1.getEndDateWithDays());
+
+            Ticket ticket1 = new Ticket(0, "Novo problema", "Preciso que instale um software em minha máquina", userDefault1, theme1, freshDate, StatusTicketEnum.ABERTO);
             ticketDAO.save(ticket1);
 
             //-----------------------------//

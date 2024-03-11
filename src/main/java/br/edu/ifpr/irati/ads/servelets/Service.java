@@ -14,4 +14,15 @@ public interface Service {
     public void salvar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 
     public void excluir(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
+
+    class ServiceFactory {
+      public static Service getService(String name) {
+        switch (name) {
+          case "tickets":
+            return new TicketService();
+          default:
+            return null;
+        }
+      }
+    }
 }

@@ -6,7 +6,6 @@
         <script>
             <%@include file="js/functions.js" %>
         </script>
-        
     </head>
     <body>
         <%@include file="cabecalho.jsp"%>

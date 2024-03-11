@@ -5,6 +5,8 @@ import br.edu.ifpr.irati.ads.models.enums.TypeUserEnum;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
+import java.util.Date;
+
 @Entity
 @DiscriminatorValue("ADMIN")
 public class Admin extends User{
@@ -16,8 +18,8 @@ public class Admin extends User{
         super(0, "", "");
     }
 
-    public void freshTermTicket(Ticket ticket, int days) {
-        ticket.setEndDateWithDays(days);
+    public void freshTermTicket(Ticket ticket, Date date) {
+        ticket.setEndDate(date);
     }
 
     public void deletegateToResponsability(Helper helper, Ticket ticket) {
