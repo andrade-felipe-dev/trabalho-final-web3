@@ -9,6 +9,7 @@
             <li><a href="/tickets/listar">Tickets</a></li>
 
             <c:if test="${cookie.type.getValue() == 'ADMIN'}">
+                <li><a href="/users/listar">Usuários</a></li>
                 <li><a href="/reports/listar">Relatórios</a></li>
             </c:if>
             <li><a href="/login">Sair</a></li>

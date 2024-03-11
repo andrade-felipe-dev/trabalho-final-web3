@@ -17,12 +17,11 @@ public interface Service {
 
     class ServiceFactory {
       public static Service getService(String name) {
-        switch (name) {
-          case "tickets":
-            return new TicketService();
-          default:
-            return null;
-        }
+        return switch (name) {
+          case "tickets" -> new TicketService();
+          case "users" -> new UserService();
+          default -> null;
+        };
       }
     }
 }

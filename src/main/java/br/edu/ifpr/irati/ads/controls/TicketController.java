@@ -49,7 +49,7 @@ public class TicketController {
     public List<Ticket> listAllTicketWithResponsible(Helper user) {
         TicketDAO ticketDAO = new TicketDAO(session);
 
-        return ticketDAO.findByResponsible(user.getId());
+        return ticketDAO.findByHelper(user.getId());
     }
 
     public List<Ticket> listAllTicketWithCreatedBy(User user) {

@@ -15,8 +15,8 @@ public class TicketDAO {
         this.session = session;
     }
 
-    public List<Ticket> findByResponsible(int userId) {
-        String hql = "from ticket t where t.responsible.id = :userId";
+    public List<Ticket> findByHelper(int userId) {
+        String hql = "from ticket t where t.responsible.id = :userId or t.createdBy.id = :userId";
 
         Query<Ticket> query = this.session.createQuery(hql, Ticket.class);
         query.setParameter("userId", userId);

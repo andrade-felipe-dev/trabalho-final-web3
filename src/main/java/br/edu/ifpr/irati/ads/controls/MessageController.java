@@ -25,19 +25,8 @@ public class MessageController {
         return messageDAO.findByTicket(ticket);
     }
 
-    public void createMessage(Message ticket) throws PersistenceException {
-        InterfaceDAO<Message> ticketDAO = new GenericDAO<>(Message.class, session);
-        ticketDAO.save(ticket);
-    }
-
-    public void updateMessage(Message ticket) throws PersistenceException {
-        InterfaceDAO<Message> ticketDAO = new GenericDAO<>(Message.class, session);
-        ticketDAO.edit(ticket);
-    }
-
-
-    public void deleteMessage(Message ticket) throws PersistenceException {
-        InterfaceDAO<Message> ticketDAO = new GenericDAO<>(Message.class, session);
-        ticketDAO.destroy(ticket);
+    public void createMessage(Message message) throws PersistenceException {
+        InterfaceDAO<Message> messageDAO = new GenericDAO<>(Message.class, session);
+        messageDAO.save(message);
     }
 }

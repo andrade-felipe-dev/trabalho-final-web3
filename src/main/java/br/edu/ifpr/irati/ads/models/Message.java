@@ -16,7 +16,7 @@ public class Message {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Ticket ticket;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private User author;
     public Message(int id, String message, Ticket ticket, User author) {
         this.id = id;

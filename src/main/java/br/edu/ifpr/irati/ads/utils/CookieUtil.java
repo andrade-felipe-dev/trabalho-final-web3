@@ -19,4 +19,20 @@ public class CookieUtil {
 
     return email;
   }
+
+  public Cookie getType(HttpServletRequest httpReq) {
+    Cookie[] cookies = httpReq.getCookies();
+    Cookie type = null;
+
+    if (cookies != null) {
+      for (Cookie c: cookies) {
+        if (c.getName().equals("type")) {
+          type = c;
+          break;
+        }
+      }
+    }
+
+    return type;
+  }
 }

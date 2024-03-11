@@ -20,7 +20,11 @@ import java.util.List;
         "/tickets/listar",
         "/tickets/editar",
         "/tickets/salvar",
-        "/tickets/excluir"
+        "/tickets/excluir",
+        "/users/listar",
+        "/users/editar",
+        "/users/salvar",
+        "/users/excluir"
 })
 public class ServiceServelet extends HttpServlet {
   @Override

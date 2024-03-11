@@ -57,6 +57,30 @@
 
   <c:when test="${requestScope.ticketatual ne null}">
     <div class="container" style="align-content: center; width: 70%; padding-top: 50px">
+      <c:if test="${requestScope.ticketatual.id != 0}">
+        <div class="container" style="align-content: center; width: 70%; padding-top: 50px">
+          <ul class="collection">
+            <c:forEach items="${requestScope.messages}" var="m">
+              <ol>Autor: <c:out value="${m.author.name}"></c:out></ol>
+              <ol>Mensagem: <c:out value="${m.message}"></c:out></ol>
+              <div class="divider"></div>
+            </c:forEach>
+            <form action="/salvarMensagem" method="POST">
+              <div class="input-field col s12">
+                <input id="ticketid" name="ticketid" type="hidden" value="${ticketatual.id}">
+              </div>
+              <div class="input-field col s12">
+                <textarea name="message" id="message" class="materialize-textarea"></textarea>
+                <label for="message">Mensagem</label>
+                <button class="btn waves-effect waves-light blue darken-3" type="submit" name="salvar">Salvar
+                  <i class="material-icons right">save</i>
+                </button>
+              </div>
+            </form>
+          </ul>
+        </div>
+      </c:if>
+
       <form action="salvar" method="POST">
         <div class="row">
           <div class="input-field col s12">
@@ -83,14 +107,22 @@
           </div>
 
           <c:if test="${cookie.type.getValue() == 'ADMIN' && ticketatual.id != 0}">
+            <div class="col s12">
+              <label>Responsável</label>
+              <select class="browser-default" name="helper">
+                <option value="" disabled selected>Selecione um responsável por gentileza.</option>
+                <c:forEach items="${requestScope.helpers}" var="helper">
+                  <option value="${helper.id}" <c:if test="${ticketatual.responsible.id eq helper.id}">selected</c:if>> <c:out value="${helper.name}"></c:out></option>
+                </c:forEach>
+              </select>
+            </div>
+
             <div class="input-field col s12">
               <input type="text" id="newDateTicket" class="datepicker" name="newDateTicket" value="${ticketatual.endDate}">
               <label for="newDateTicket">Previsão de dias para finalizar o ticket</label>
             </div>
           </c:if>
-
         </div>
-
         <div class="row">
           <div class="col s12">
             <button class="btn waves-effect waves-light blue darken-3" type="submit" name="salvar">Salvar
